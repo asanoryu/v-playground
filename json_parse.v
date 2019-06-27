@@ -31,6 +31,13 @@ fn (u User) str() string{
     return '<User $u.name.first $u.name.last> age : $u.age balance: $u.balance'
 }
 
+fn (us []User) str() string{
+    mut ret := ''
+    for u in us{
+        ret += u.str() +'\n'
+    }
+    return ret
+}
 
 fn main(){
     contents := os.read_file(filename) or {
@@ -41,7 +48,8 @@ fn main(){
         eprintln('Failed to parse json')
         return
     }
-    for user in json_o{
-        println(user)
-    }
+    println(json_o)
+    // for user in json_o{
+    //     println(user)
+    // }
 }
